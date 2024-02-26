@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "glesys-ddns"
+version = "0.1.0"
+description = "Update GleSYS DNS records using REST."
+authors = ["Anton Ekblad"]
+license = "Unlicense"
+readme = "README.md"
+packages = [{include = "glesys_ddns"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+pyright = "^1.1.351"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
