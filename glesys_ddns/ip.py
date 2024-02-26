@@ -10,9 +10,11 @@ _getaddrinfo_lock: Lock = Lock()
 def _with_patched_getaddrinfo[T](af: socket.AddressFamily, f: Callable[[], T]) -> T:
     with _getaddrinfo_lock:
         old_getaddrinfo = socket.getaddrinfo
+
         def _getaddrinfo(*args, **kwargs):  # type: ignore
             responses = old_getaddrinfo(*args, **kwargs)  # type: ignore
             return [response for response in responses if response[0] == af]
+
         socket.getaddrinfo = _getaddrinfo
         try:
             return f()
